@@ -1,5 +1,6 @@
 ﻿using FullStackAuth_WebAPI.Data;
 using FullStackAuth_WebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -19,7 +20,7 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         // POST api/<ReviewsController>
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult Post([FromBody] Review review)
         {
             try
@@ -31,7 +32,7 @@ namespace FullStackAuth_WebAPI.Controllers
                     return Unauthorized();
                 }
                 review.UserId = userId;
-                _context.Add(review);
+                _context.Reviews.Add(review);
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
