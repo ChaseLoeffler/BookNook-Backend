@@ -29,10 +29,10 @@ const SearchPage = (props)=> {
     return(
         <div>
             <form onSubmit={handleSumbit}>
-                <label style={{'marginLeft':'1rem'}}>Search Books: </label>
-                <input type='text' value={search} onChange={(e)=> setSearch(e.target.value)} placeholder='Search Songs'/>
+                <label className="margin-left">Search Books: </label>
+                <input type='text' value={search} onChange={(e)=> setSearch(e.target.value)} placeholder='Search Books'/>
             </form>
-            <div style={{'marginLeft':'1rem'}}>
+            <div className="margin-left">
                 <ResultsList bookData={bookData}/>
             </div>
         </div>
