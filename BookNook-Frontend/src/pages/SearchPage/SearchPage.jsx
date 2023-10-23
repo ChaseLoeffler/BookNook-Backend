@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ResultsList from "../../components/ResultsList/ResultsList";
 
 
 
@@ -14,8 +15,9 @@ const SearchPage = (props)=> {
 
     async function searchBooks(){
         try{
-            let response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=AIzaSyDvdBAmSV9lOhpX-TY6bjxAEZY29gHcy24`)
+            let response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40`)
             console.log(response.data.items)
+            setData(response.data.items)
         } catch (err){
             console.log(err.message)
         }
@@ -27,9 +29,12 @@ const SearchPage = (props)=> {
     return(
         <div>
             <form onSubmit={handleSumbit}>
-                <label>Search Books: </label>
+                <label style={{'marginLeft':'1rem'}}>Search Books: </label>
                 <input type='text' value={search} onChange={(e)=> setSearch(e.target.value)} placeholder='Search Songs'/>
             </form>
+            <div style={{'marginLeft':'1rem'}}>
+                <ResultsList bookData={bookData}/>
+            </div>
         </div>
     )
 }
