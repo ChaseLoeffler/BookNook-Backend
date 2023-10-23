@@ -12,8 +12,30 @@ const Navbar = () => {
       <ul>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/ASP.NET JWT Starter</b>
+            <b>BookNook</b>
           </Link>
+        </li>
+        <li>
+        {user ? (
+            <Link to="/search" style={{ textDecoration: "none", color: "white" }}>
+              <p>Search</p>
+            </Link>
+          ) : (
+            <Link to="/login" style={{ textDecoration: "none", color: "white" }}>
+              <p>Search</p>
+            </Link>
+          )}
+        </li>
+        <li>
+        {user ? (
+            <Link to="/Favorites" style={{ textDecoration: "none", color: "white" }}>
+              <p>Favorites</p>
+            </Link>
+          ) : (
+            <Link to="/login" style={{ textDecoration: "none", color: "white" }}>
+              <p>Favorites</p>
+            </Link>
+          )}
         </li>
         <li>
           {user ? (
@@ -22,6 +44,7 @@ const Navbar = () => {
             <button onClick={() => navigate("/login")}>Login</button>
           )}
         </li>
+        
       </ul>
     </div>
   );
