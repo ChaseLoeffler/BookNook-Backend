@@ -28,8 +28,8 @@ const SearchPage = (props)=> {
     }
     return(
         <div>
-            <form onSubmit={handleSumbit}>
-                <label className="margin-left">Search Books: </label>
+            <form className="search-bar" onSubmit={handleSumbit}>
+                <label>Search Books:</label>
                 <input type='text' value={search} onChange={(e)=> setSearch(e.target.value)} placeholder='Search Books'/>
             </form>
             <div className="margin-left">
