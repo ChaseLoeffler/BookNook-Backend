@@ -47,6 +47,14 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/Favorites"
+          element={
+            <PrivateRoute>
+              <FavoritesPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

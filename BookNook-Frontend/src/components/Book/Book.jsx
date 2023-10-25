@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Book = ({bookId,token}) => {
-    const [bookData,setData] = useState()
+const Book = ({bookId,token,bookInfo}) => {
     const [favorited,setFav] = useState()
     useEffect(() => {
-        bookDetails();
         isFavorited();
-        addToFavorites();
-    },[],[favorited],[])
+    },[])
 
-    async function bookDetails(){
-        try{
-            const controller = new AbortController();
-            let response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
-            console.log(response.data)
-            setData(response.data)
-            return () => controller.abort();
-        } catch (err){
-            console.log(err.message);
-        }
-    }
+    
 
     async function isFavorited(){
         try{
@@ -52,8 +39,8 @@ const Book = ({bookId,token}) => {
         e.preventDefault();
         let newEntry = {
             bookId: `${bookId}`,
-            title: `${bookData?.volumeInfo?.title}`,
-            thumbnail: `${bookData?.volumeInfo?.imageLinks?.thumbnail}`
+            title: `${bookInfo?.volumeInfo?.title}`,
+            thumbnailUrl: `${bookInfo?.volumeInfo?.imageLinks?.thumbnail}`
         };
         console.log(newEntry);
         addToFavorites(newEntry)
@@ -63,13 +50,13 @@ const Book = ({bookId,token}) => {
         return null;
     }
 
-    if (!bookData) {
+    if (!bookInfo) {
         return null;
     }
 
     
     function isFavOrUnfav(){
-        if(favorited[0].bookFavorited === true){
+        if(favorited.bookFavorited === true){
             return (<button>Unfavorite Book</button>)
         }
         else{
@@ -81,14 +68,14 @@ const Book = ({bookId,token}) => {
         <div className='margin-left'>
             <div className='book-container'>
                 <div className='book-pic'>
-                <img src={bookData?.volumeInfo?.imageLinks?.thumbnail}/>
+                <img src={bookInfo?.volumeInfo?.imageLinks?.thumbnail}/>
                 <div>
                     {isFavOrUnfav()}
                 </div>
                 </div>
-                <h3>{bookData?.volumeInfo?.title}</h3>
-                <h4>{bookData?.volumeInfo?.authors}</h4>
-                <p dangerouslySetInnerHTML={{__html:bookData?.volumeInfo?.description}}></p>
+                <h3>{bookInfo?.volumeInfo?.title}</h3>
+                <h4>{bookInfo?.volumeInfo?.authors}</h4>
+                <p dangerouslySetInnerHTML={{__html:bookInfo?.volumeInfo?.description}}></p>
             </div>
         </div>
     );

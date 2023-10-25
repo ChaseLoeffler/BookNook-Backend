@@ -38,7 +38,7 @@ namespace FullStackAuth_WebAPI.Controllers
                 {
                     favorited = false;
                 }
-                var book = _context.Reviews.Select(b => new BookDetailsDto
+                var book = new BookDetailsDto
                 {
                     Reviews = _context.Reviews.Where(b => b.BookId.Equals(id)).Select(b => new ReviewWithUserDto
                     {
@@ -54,9 +54,9 @@ namespace FullStackAuth_WebAPI.Controllers
                             UserName = b.User.UserName
                         }
                     }).ToList(),
-                    AverageRating = Math.Round(_context.Reviews.Select(b=>b.Rating).ToArray().Average(), 1),
+                    AverageRating = Math.Round(_context.Reviews.Select(b => b.Rating).ToArray().Average(), 1),
                     BookFavorited = favorited
-                }).ToList();
+                };
                 return StatusCode(200, book);
             }
             catch (Exception ex) 

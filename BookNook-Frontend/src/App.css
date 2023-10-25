@@ -69,3 +69,22 @@ button:hover {
 .book-pic{
   display: flex;
 }
+
+.display-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-box {
+  width: 546px;
+  height: 149px;
+  resize: none;
+}
+
+.favorite-links{
+  position: relative;
+  top: -5rem;
+  left: 1rem;
+  text-decoration: none;
+  color: black;
+}

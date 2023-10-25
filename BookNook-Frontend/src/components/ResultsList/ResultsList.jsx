@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const ResultsList = (props) => {
+const ResultsList = ({bookData}) => {
 
-    const list = props.bookData.map(book =>(
+    const list = bookData.map(book =>(
         <ul key={book.id}>
             <li><Link to={`/BookDetails/${book.id}`}>{book.volumeInfo.title}</Link></li>
         </ul>
-    ))
+    ));
 
 
     return ( 
